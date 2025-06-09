@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bekasi MoveMap - WebGIS Transportasi Kota Bekasi</title>
+  <meta name="description" content="Platform WebGIS interaktif untuk memahami distribusi transportasi umum dan mengidentifikasi titik rawan kemacetan di Kota Bekasi">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS Animation Library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="assets/logo_bekasi.png" alt="Logo Kota Bekasi">
+          <div class="logo-text">
+            <h1>Bekasi MoveMap</h1>
+          </div>
+        </div>
+
+        <nav class="desktop-nav">
+          <a href="index.html#home" class="nav-item active"><i class="fas fa-home"></i> Beranda</a>
+          <a href="map.html#map" class="nav-item"><i class="fas fa-map"></i> Peta</a>
+          <a href="data.html#data" class="nav-item"><i class="fas fa-chart-bar"></i> Data & Statistik</a>
+          <a href="index.html#developer" class="nav-item"><i class="fas fa-users"></i> Pengembang</a>
+          <a href="index.html#contact" class="nav-item"><i class="fas fa-phone"></i> Kontak</a>
+        </nav>
+
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <nav class="mobile-nav">
+        <a href="index.html#home" class="nav-item"><i class="fas fa-home"></i> Beranda</a>
+        <a href="map.html#map" class="nav-item"><i class="fas fa-map"></i> Peta</a>
+        <a href="data.html#data" class="nav-item"><i class="fas fa-chart-bar"></i> Data & Statistik</a>
+        <a href="index.html#developer" class="nav-item"><i class="fas fa-users"></i> Pengembang</a>
+        <a href="index.html#contact" class="nav-item"><i class="fas fa-phone"></i> Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="hero-bg-elements">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+          <div class="hero-badge">
+            <i class="fas fa-map-marker-alt"></i>
+            <span class="hero-badge-pulse"></span>
+          </div>
+          <h1 class="hero-title">WebGIS Transportasi Kota Bekasi</h1>
+          <p class="tagline">Temukan Moda Transportasi, Hindari Titik Padat</p>
+          <p class="description">
+            Platform WebGIS interaktif untuk memahami distribusi transportasi umum dan mengidentifikasi titik rawan
+            kemacetan di Kota Bekasi
+          </p>
+          <div class="hero-buttons">
+            <a href="map.html#map" class="btn btn-primary">
+              <i class="fas fa-map"></i> Jelajahi Peta
+            </a>
+            <a href="data.html#data" class="btn btn-outline">
+              <i class="fas fa-chart-bar"></i> Lihat Data
+            </a>
+          </div>
+          
+          <div class="hero-stats">
+            <div class="hero-stat-card">
+              <div class="hero-stat-value">12</div>
+              <div class="hero-stat-label">Kecamatan</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="hero-stat-value">20+</div>
+              <div class="hero-stat-label">Titik Transportasi</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="hero-stat-value">4</div>
+              <div class="hero-stat-label">Titik Rawan Macet</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Description Section -->
+    <section id="description" class="description-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Tentang Bekasi MoveMap</h2>
+          <p>
+            WebGIS ini menyediakan informasi spasial komprehensif tentang sistem transportasi dan pola kemacetan di
+            Kota Bekasi.
+          </p>
+        </div>
+
+        <div class="description-content">
+          <div class="features" data-aos="fade-right">
+            <h3>Fitur Utama</h3>
+            <div class="feature-item">
+              <div class="feature-icon blue">
+                <i class="fas fa-map-marked-alt"></i>
+              </div>
+              <div class="feature-text">
+                <h4>Peta Interaktif</h4>
+                <p>Visualisasi data spasial dengan pop-up informasi dan filter kategori</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon purple">
+                <i class="fas fa-bus"></i>
+              </div>
+              <div class="feature-text">
+                <h4>Data Transportasi</h4>
+                <p>Informasi lengkap halte, terminal, stasiun KRL dan LRT</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon orange">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div class="feature-text">
+                <h4>Analisis Kemacetan</h4>
+                <p>Identifikasi titik rawan macet dengan koordinat dan deskripsi</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="coverage" data-aos="fade-left">
+            <div class="coverage-card">
+              <h3>Cakupan Data</h3>
+              <div class="coverage-item">
+                <span>Batas Administrasi</span>
+                <span class="value">12 Kecamatan</span>
+              </div>
+              <div class="coverage-item">
+                <span>Titik Transportasi</span>
+                <span class="value">20+ Lokasi</span>
+              </div>
+              <div class="coverage-item">
+                <span>Titik Rawan Macet</span>
+                <span class="value">4 Lokasi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Informasi Konten</h2>
+          <p>Jelajahi berbagai kategori data transportasi dan kemacetan yang tersedia</p>
+        </div>
+
+        <div class="gallery-cards">
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-icon blue">
+              <i class="fas fa-bus"></i>
+            </div>
+            <h3>Halte Bus</h3>
+            <div class="card-value">41</div>
+            <p>Titik halte bus tersebar di seluruh kecamatan</p>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-icon purple">
+              <i class="fas fa-train"></i>
+            </div>
+            <h3>Stasiun KRL & LRT</h3>
+            <div class="card-value">5</div>
+            <p>Stasiun kereta rel listrik aktif</p>
+          </div>
+
+          <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-icon orange">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>Titik Rawan Macet</h3>
+            <div class="card-value">4</div>
+            <p>Lokasi dengan tingkat kemacetan tinggi</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Author Section -->
+    <section id="developer" class="author-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Tentang Pengembang</h2>
+        </div>
+
+        <div class="author-card" data-aos="fade-up">
+          <div class="author-icon">
+            <img src="assets/foto aca.jpg" alt="Foto Profil Adelia Marsya Setiawan">
+          </div>
+          <h3>Adelia Marsya Setiawan</h3>
+          <p>
+            Bekasi MoveMap dikembangkan sebagai solusi inovatif untuk memahami dinamika transportasi dan kemacetan
+            di Kota Bekasi. Proyek ini menggabungkan teknologi WebGIS modern dengan data spasial komprehensif untuk
+            memberikan wawasan yang actionable bagi masyarakat dan pemangku kebijakan.
+          </p>
+          <div class="author-tags">
+            <a href="https://wa.me/6281285923410" target="_blank" class="author-tag-link whatsapp icon-only">
+              <i class="fab fa-whatsapp"></i> 
+            </a>
+            <a href="https://www.instagram.com/adeliamrsy/" target="_blank" class="author-tag-link instagram icon-only">
+              <i class="fab fa-instagram"></i> 
+            </a>
+            <a href="mailto:adeliamarsya@upi.edu" class="author-tag-link email icon-only">
+             <i class="fas fa-envelope"></i> 
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <div>
+              <h3>Bekasi MoveMap</h3>
+              <p>WebGIS Transportasi</p>
+            </div>
+          </div>
+          <p>Platform WebGIS untuk analisis transportasi dan kemacetan di Kota Bekasi</p>
+        </div>
+
+        <div class="footer-menu">
+          <h4>Menu</h4>
+          <a href="index.html#home">Beranda</a>
+          <a href="map.html#map">Peta</a>
+          <a href="data.html#data">Data & Statistik</a>
+          <a href="index.html#developer">Pengembang</a>
+          <a href="index.html#contact">Kontak</a>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Kontak</h4>
+          <p>Email: adeliamarsya@upi.edu</p>
+          <p>No. Telp: +62 812-8592-3410</p>
+          <p>© 2025 Bekasi MoveMap</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="script.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>

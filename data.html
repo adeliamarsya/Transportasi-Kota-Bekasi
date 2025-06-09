@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data & Statistik - Bekasi MoveMap</title>
+  <meta name="description" content="Data dan statistik transportasi dan kemacetan di Kota Bekasi">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS Animation Library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <style>
+      .data-section {
+        padding: 8rem 0 4rem;
+      }
+      
+      .chart-container {
+        background-color: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+      
+      .chart-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--gray-800);
+      }
+      
+      .chart-description {
+        color: var(--gray-600);
+        margin-bottom: 1.5rem;
+      }
+      
+      .data-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .data-card {
+        background-color: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+      }
+      
+      .data-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+      }
+      
+      .data-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--gray-800);
+      }
+      
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      
+      .data-table th, .data-table td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid var(--gray-200);
+      }
+      
+      .data-table th {
+        font-weight: 600;
+        color: var(--gray-700);
+        background-color: var(--gray-50);
+      }
+      
+      .data-table tr:last-child td {
+        border-bottom: none;
+      }
+      
+      .data-table tr:hover {
+        background-color: var(--gray-50);
+      }
+      
+      .status-indicator {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+      
+      .status-high {
+        background-color: var(--orange-primary);
+      }
+      
+      .status-medium {
+        background-color: #f59e0b;
+      }
+      
+      .status-low {
+        background-color: #10b981;
+      }
+      
+      @media (min-width: 768px) {
+        .data-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+   <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="assets/logo_bekasi.png" alt="Logo Kota Bekasi">
+          <div class="logo-text">
+            <h1>Bekasi MoveMap</h1>
+          </div>
+        </div>
+
+        <nav class="desktop-nav">
+          <a href="index.html#home" class="nav-item"><i class="fas fa-home"></i> Beranda</a>
+          <a href="map.html#map" class="nav-item"><i class="fas fa-map"></i> Peta</a>
+          <a href="data.html#data" class="nav-item active"><i class="fas fa-chart-bar"></i> Data & Statistik</a>
+          <a href="index.html#developer" class="nav-item"><i class="fas fa-users"></i> Pengembang</a>
+          <a href="index.html#contact" class="nav-item"><i class="fas fa-phone"></i> Kontak</a>
+        </nav>
+
+        <button class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <nav class="mobile-nav">
+        <a href="index.html#home" class="nav-item"><i class="fas fa-home"></i> Beranda</a>
+        <a href="map.html#map" class="nav-item"><i class="fas fa-map"></i> Peta</a>
+        <a href="data.html#data" class="nav-item"><i class="fas fa-chart-bar"></i> Data & Statistik</a>
+        <a href="index.html#developer" class="nav-item"><i class="fas fa-users"></i> Pengembang</a>
+        <a href="index.html#contact" class="nav-item"><i class="fas fa-phone"></i> Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Data Section -->
+  <main>
+    <section id="data" class="data-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Data & Statistik</h2>
+          <p>Visualisasi data transportasi dan kemacetan di Kota Bekasi</p>
+        </div>
+
+        <div class="data-grid">
+          <div class="data-card" data-aos="fade-up" data-aos-delay="200">
+            <h3>Titik Rawan Macet Terpadat</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Lokasi</th>
+                  <th>Tingkat</th>
+                  <th>Waktu Puncak</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lampu Merah Kayuringin</td>
+                  <td><span class="status-indicator status-high"></span>Tinggi</td>
+                  <td>07:00 - 09:00</td>
+                </tr>
+                <tr>
+                  <td>Lampu Merah BCP</td>
+                  <td><span class="status-indicator status-high"></span>Tinggi</td>
+                  <td>17:00 - 19:00</td>
+                </tr>
+                <tr>
+                  <td>Pertigaan Summarecon</td>
+                  <td><span class="status-indicator status-medium"></span>Sedang</td>
+                  <td>16:00 - 18:00</td>
+                </tr>
+                <tr>
+                  <td>Lampu Merah Pekayon</td>
+                  <td><span class="status-indicator status-medium"></span>Sedang</td>
+                  <td>07:30 - 09:30</td>
+                </tr>
+                <tr>
+                  <td>Gerbang Harapan Indah</td>
+                  <td><span class="status-indicator status-low"></span>Rendah</td>
+                  <td>12:00 - 13:00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="data-card" data-aos="fade-up" data-aos-delay="300">
+            <h3>Stasiun dengan Penumpang Terbanyak</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Stasiun</th>
+                  <th>Jenis</th>
+                  <th>Penumpang/Hari</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Stasiun Bekasi</td>
+                  <td>KRL</td>
+                  <td>45,000</td>
+                </tr>
+                <tr>
+                  <td>Stasiun Kranji</td>
+                  <td>KRL</td>
+                  <td>32,000</td>
+                </tr>
+                <tr>
+                  <td>Stasiun Cakung</td>
+                  <td>KRL</td>
+                  <td>28,000</td>
+                </tr>
+                <tr>
+                  <td>Stasiun Bekasi Timur</td>
+                  <td>LRT</td>
+                  <td>15,000</td>
+                </tr>
+                <tr>
+                  <td>Terminal Bekasi</td>
+                  <td>Bus</td>
+                  <td>12,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="data-card" data-aos="fade-up" data-aos-delay="400">
+            <h3>Aksesibilitas Transportasi</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Kecamatan</th>
+                  <th>Halte Bus</th>
+                  <th>Stasiun</th>
+                  <th>Skor Aksesibilitas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bekasi Timur</td>
+                  <td>18</td>
+                  <td>2</td>
+                  <td>8.5/10</td>
+                </tr>
+                <tr>
+                  <td>Bekasi Barat</td>
+                  <td>15</td>
+                  <td>2</td>
+                  <td>7.8/10</td>
+                </tr>
+                <tr>
+                  <td>Bekasi Selatan</td>
+                  <td>12</td>
+                  <td>2</td>
+                  <td>7.2/10</td>
+                </tr>
+                <tr>
+                  <td>Bekasi Utara</td>
+                  <td>14</td>
+                  <td>0</td>
+                  <td>6.9/10</td>
+                </tr>
+                <tr>
+                  <td>Rawalumbu</td>
+                  <td>8</td>
+                  <td>0</td>
+                  <td>5.5/10</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="data-card" data-aos="fade-up" data-aos-delay="500">
+            <h3>Ringkasan Data</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div style="text-align: center; padding: 1rem; background-color: var(--gray-50); border-radius: var(--radius);">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--blue-primary);">41</div>
+                <div style="color: var(--gray-600);">Total Halte Bus</div>
+              </div>
+              <div style="text-align: center; padding: 1rem; background-color: var(--gray-50); border-radius: var(--radius);">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--purple-primary);">5</div>
+                <div style="color: var(--gray-600);">Stasiun KRL</div>
+              </div>
+              <div style="text-align: center; padding: 1rem; background-color: var(--gray-50); border-radius: var(--radius);">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--orange-primary);">4</div>
+                <div style="color: var(--gray-600);">Titik Rawan Macet</div>
+              </div>
+              <div style="text-align: center; padding: 1rem; background-color: var(--gray-50); border-radius: var(--radius);">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--green-primary);">12</div>
+                <div style="color: var(--gray-600);">Kecamatan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <div>
+              <h3>Bekasi MoveMap</h3>
+              <p>WebGIS Transportasi</p>
+            </div>
+          </div>
+          <p>Platform WebGIS untuk analisis transportasi dan kemacetan di Kota Bekasi</p>
+        </div>
+
+        <div class="footer-menu">
+          <h4>Menu</h4>
+          <a href="index.html#home">Beranda</a>
+          <a href="map.html#map">Peta</a>
+          <a href="data.html#data">Data & Statistik</a>
+          <a href="index.html#developer">Pengembang</a>
+          <a href="index.html#contact">Kontak</a>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Kontak</h4>
+          <p>Email: adeliamarsya@upi.edu</p>
+          <p>No. Telp: +62 812-8592-3410</p>
+          <p>© 2025 Bekasi MoveMap</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+ <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS
+        AOS.init({
+          duration: 800,
+          easing: 'ease-in-out',
+          once: true,
+          mirror: false
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+          mobileNav.classList.toggle('active');
+          
+          // Change icon
+          const icon = mobileMenuBtn.querySelector('i');
+          if (mobileNav.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+
+        // Transportation Chart
+        const transportationCtx = document.getElementById('transportationChart').getContext('2d');
+        new Chart(transportationCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Bekasi Timur', 'Bekasi Barat', 'Bekasi Selatan', 'Bekasi Utara', 'Rawalumbu', 'Mustika Jaya'],
+            datasets: [{
+              label: 'Halte Bus',
+              data: [18, 15, 12, 14, 8, 10],
+              backgroundColor: '#3b82f6',
+              borderColor: '#2563eb',
+              borderWidth: 1
+            }, {
+              label: 'Stasiun KRL',
+              data: [3, 2, 2, 1, 1, 0],
+              backgroundColor: '#8b5cf6',
+              borderColor: '#7c3aed',
+              borderWidth: 1
+            }, {
+              label: 'Terminal',
+              data: [1, 1, 0, 1, 0, 0],
+              backgroundColor: '#10b981',
+              borderColor: '#059669',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            },
+            plugins: {
+              legend: {
+                position: 'top',
+              }
+            }
+          }
+        });
+
+        // Congestion Chart
+        const congestionCtx = document.getElementById('congestionChart').getContext('2d');
+        new Chart(congestionCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Tinggi', 'Sedang', 'Rendah'],
+            datasets: [{
+              data: [35, 45, 20],
+              backgroundColor: ['#f97316', '#f59e0b', '#10b981'],
+              borderColor: ['#ea580c', '#d97706', '#059669'],
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+              }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+  </html>
+
